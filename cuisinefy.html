@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuisinefy</title>
+    <link href="https://fonts.cdnfonts.com/css/comica-bd" rel="stylesheet">
+    <link rel="icon" type="image/png" href="img/logo.png">
+    <style>
+        @import url('https://fonts.cdnfonts.com/css/comica-bd');
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Comica BD Bold', sans-serif;
+            font-size: 16px;
+            line-height: 1.5;
+            overflow-x: hidden;
+            color: #333;
+        }
+
+        /* Background video container */
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .video-background video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        header {
+            background: none; /*rgba(0, 0, 0, 0.6);*/
+            box-shadow: none; /*0 4px 6px rgba(0, 0, 0, 0.1);*/
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: 'Comica BD', sans-serif;
+            font-size: 70px;
+            margin: 0;
+            color: #0d0e0f;
+        }
+
+        p {
+            font-family: 'Comica BD Bold', sans-serif;
+            font-size: 20px;
+            color: #4f1a1a;
+        }
+
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 40px 0;
+        }
+
+        input[type="text"] {
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 2px solid #141010;
+            border-radius: 8px;
+            font-size: 16px;
+            padding: 12px;
+            margin: 6px;
+            width: 100%;
+            max-width: 300px;
+            box-sizing: border-box;
+        }
+
+        .btn {
+            cursor: pointer;
+        }
+
+        button[type="button"] {
+            background-color: #eb2632;
+            border: none;
+            border-radius: 15px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 12px 20px;
+            margin: 6px;
+            transition: background-color 0.2s, transform 0.2s;
+            width: 100%;
+            max-width: 150px;
+            box-sizing: border-box;
+        }
+
+        button[type="button"]:hover {
+            background-color: #fd5959;
+            transform: scale(1.05);
+        }
+
+        #results {
+            display: grid;
+            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            margin: 40px;
+        }
+
+        #results>div {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        #results>div:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        #results img {
+            border-radius: 8px;
+            margin-bottom: 20px;
+            object-fit: cover;
+            height: 200px;
+            width: 100%;
+            transition: transform 0.2s;
+        }
+
+        #results img:hover {
+            transform: scale(1.05);
+        }
+
+        #results h3 {
+            color: #eb2632;
+            font-size: 24px;
+            margin: 0 0 10px;
+            font-weight: bold;
+        }
+
+        #results ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        #results li {
+            list-style: none;
+            margin-bottom: 10px;
+        }
+
+        #results a {
+            background-color: #eb2632;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 16px;
+            padding: 12px 20px;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.2s, transform 0.2s;
+            margin-top: auto;
+        }
+
+        #results a:hover {
+            background-color: #fd5959;
+            transform: scale(1.05);
+        }
+
+        /* Responsive design adjustments */
+        @media screen and (max-width: 768px) {
+            h1 {
+                font-size: 36px;
+            }
+
+            input[type="text"], button[type="button"] {
+                width: calc(100% - 24px);
+                margin: 6px 0;
+            }
+
+            #results {
+                margin: 20px 10px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            h1 {
+                font-size: 28px;
+            }
+
+            #results {
+                margin: 20px 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="video-background">
+        <video autoplay muted loop playsinline>
+            <source src="video/food.mp4" type="video/mp4">
+            <source src="video/food.webm" type="video/webm">
+            Your browser does not support HTML5 video.
+        </video>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>Cuisinefy</h1>
+            <p>Find your perfect recipe in seconds with Cuisinefy. Fast, easy, and delicious - start your cooking adventure now and make every meal a delight!</p>
+        </header>
+        <form>
+            <input type="text" id="search" placeholder="Find whatever you want">
+            <button type="button" id="submit" class="btn">Search</button>
+        </form>
+        <div id="results"></div>
+    </div>
+
+    <script>
+        // get references to HTML elements
+        const searchInput = document.getElementById('search');
+        const submitButton = document.getElementById('submit');
+        const resultsDiv = document.getElementById('results');
+
+        // add event listener to the submit button
+        submitButton.addEventListener('click', searchRecipes);
+
+        // function to handle recipe search
+        async function searchRecipes() {
+            // get the search value from the input field
+            const searchValue = searchInput.value.trim();
+
+            // fetch recipes from the Edamam API
+            const response = await fetch(`https://api.edamam.com/search?app_id=1cca6c9e&app_key=efcce1fe33a0d50554e770dd746995d2&q=${searchValue}&from=0&to=10`);
+            
+            // parse the response as JSON
+            const data = await response.json();
+            
+            // display the fetched recipes
+            displayRecipes(data.hits);
+        }
+
+        // Function to display fetched recipes
+        function displayRecipes(recipes) {
+            // clear previous results
+            resultsDiv.innerHTML = '';
+
+            // loop through each recipe and create HTML elements to display them
+            recipes.forEach(recipe => {
+                // create a div element for each recipe
+                const recipeDiv = document.createElement('div');
+                
+                // Create an h3 element for the recipe label
+                const recipeLabel = document.createElement('h3');
+                recipeLabel.textContent = recipe.recipe.label;
+
+                // create an ul element for the recipe ingredients
+                const ingredientsList = document.createElement('ul');
+                recipe.recipe.ingredientLines.forEach(ingredient => {
+                    const ingredientItem = document.createElement('li');
+                    ingredientItem.textContent = ingredient;
+                    ingredientsList.appendChild(ingredientItem);
+                });
+
+                // create a p element for the recipe instructions
+                const instructionsPara = document.createElement('p');
+                instructionsPara.innerHTML = `<a href="${recipe.recipe.url}" target="_blank">Instructions</a>`;
+
+                // create an image element for the recipe image
+                const recipeImage = document.createElement('img');
+                recipeImage.src = recipe.recipe.image;
+                recipeImage.alt = recipe.recipe.label;
+                
+                // append all elements to the recipe div
+                recipeDiv.appendChild(recipeImage);
+                recipeDiv.appendChild(recipeLabel);
+                recipeDiv.appendChild(ingredientsList);
+                recipeDiv.appendChild(instructionsPara);
+
+                // append the recipe div to the results container
+                resultsDiv.appendChild(recipeDiv);
+            });
+        }
+    </script>
+</body>
+</html>
