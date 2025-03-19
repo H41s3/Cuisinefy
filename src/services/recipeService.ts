@@ -93,8 +93,8 @@ const getApiCredentials = () => {
   // These are intentionally public demo credentials with limited quota
   // Replace with your own credentials in production by modifying this function
   return {
-    appId: "1cca6c9e",
-    appKey: "efcce1fe33a0d50554e770dd746995d2"
+    appId: "YOUR_APP_ID_HERE",
+    appKey: "YOUR_APP_KEY_HERE"
   };
 };
 
