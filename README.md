@@ -1,10 +1,6 @@
 # Cuisinefy - Recipe Finder Application
 
-A beautiful recipe search application built with React, TypeScript, and Tailwind CSS.
-
-## Live Demo
-
-Visit the live site: [Cuisinefy](https://h41s3.github.io/Cuisinefy/)
+A recipe search application built with React, TypeScript, and Tailwind CSS.
 
 ## Features
 
